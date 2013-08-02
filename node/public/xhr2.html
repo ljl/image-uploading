@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>XHR2 file upload example</title>
+        <link rel="stylesheet" type="text/css" href="bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="styles.css"/>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="scripts.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $('form').on('submit', function(e) {
+                    e.preventDefault();
+                    logEvent("submit");
+                    var formData = new FormData($(this));
+                    $.ajax({
+                        url: "/upload",
+                        method: "POST",
+                        xhr: function() {  // custom xhr
+                            var myXhr = $.ajaxSettings.xhr();
+                            if(myXhr.upload){ // check if upload property exists
+                                myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // for handling the progress of the upload
+                            }
+                            return myXhr;
+                        },
+                        data: formData,
+                        success: function(data) {
+                            alert("done");
+                        },
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    });
+                });
+            });
+            
+            function progressHandlingFunction(e){
+                if(e.lengthComputable){
+                    $('progress').attr({value:e.loaded,max:e.total});
+                }
+            }
+        </script>
+    </head>
+    <body onload="pageRefresh();">
+        <div class="container">
+            <h1>XHR2 upload</h1>
+            <div class="row">
+                
+                <div class="form col-lg-4">
+                    <form action="/upload" method="post" enctype="multipart/form-data">
+                        <div>
+                            <input type="file" name="image" /><br />
+                            <input type="submit" class="btn" />
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="result" class="col-lg-4">
+                </div>
+                
+                <div id="log" class="col-lg-4">    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

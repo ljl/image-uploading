@@ -1,0 +1,15 @@
+.page {
+    width:960px;
+    margin:0 auto;
+}
+#response { padding: 10px; }
+.success { background:#CCFFCC; }
+.error { background: #FF6666; }
+.loading { background: #FFFFCC; }
+iframe {
+    width:0px;
+    height:0px;
+    border:none;
+    position:absolute;
+    left:-9999px;
+}
