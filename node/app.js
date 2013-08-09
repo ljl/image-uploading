@@ -3,6 +3,7 @@ var app = express();
 
 app.post('/upload', express.bodyParser({ keepExtensions: true, uploadDir: __dirname+'/public/upload' }), function(req, res) {
     console.log(req.files);
+    req.setEncoding( "utf8" );
     var imagePath = req.files.image.path;
     var response = imagePath.substring(imagePath.indexOf("/upload"), imagePath.length);
     res.setHeader('Content-Type', 'text/plain');

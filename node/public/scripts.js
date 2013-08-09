@@ -17,8 +17,12 @@ function doIframeUpload(){
     var response = jQuery("iframe").contents().text();
     if(response){
         logEvent("Image uploaded: " + response);
-        var imgEl = document.createElement('img');
-        imgEl.setAttribute('src', response);
-        document.getElementById("result").appendChild(imgEl);
+        appendImage(response);
     }
+}
+
+function appendImage(imageUrl) {
+    var imgEl = document.createElement('img');
+    imgEl.setAttribute('src', imageUrl);
+    document.getElementById("result").appendChild(imgEl);
 }
