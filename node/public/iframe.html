@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>IFRAME</title>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="lib/jquery.filedrop.js"></script>
+        <script type="text/javascript" src="js/scripts.js"></script>
+    </head>
+    <body onload="pageRefresh();">
+        <div class="container">
+            <h1>Iframe</h1>
+            <div class="row">
+                
+                <div id="dropzone" class="form col-lg-4">
+                    <div class="well">
+                        <form action="/upload" target="uploadiframe" method="post" enctype="multipart/form-data">
+                            <div>
+                                <input type="file" name="image" /><br />
+                                <input type="submit" name="submit" class="btn" />
+                            </div>
+                        </form>
+                        <iframe name="uploadiframe" onload="doIframeUpload()"></iframe>
+                    </div>
+                    <div id="log">    
+                    </div>
+                </div>
+                
+                <div id="result" class="col-lg-8">
+                    
+                </div>
+                
+                
+            </div>
+        </div>
+    </body>
+</html>

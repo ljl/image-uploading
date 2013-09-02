@@ -5,7 +5,8 @@ app.post('/upload', express.bodyParser({ keepExtensions: true, uploadDir: __dirn
     console.log(req.files);
     req.setEncoding( "utf8" );
     var imagePath = req.files.image.path;
-    var response = imagePath.substring(imagePath.indexOf("/upload"), imagePath.length);
+    var response = imagePath.substring(imagePath.indexOf("\\upload"), imagePath.length);
+    console.log(response);
     res.setHeader('Content-Type', 'text/plain');
     res.setHeader('Content-Length', response.length);
     res.end(response);
